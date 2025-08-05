@@ -1,0 +1,53 @@
+const fs = require('fs');
+const path = require('path');
+
+const guildId = '1290829198415364118';
+
+const envContent = `# Configurações do Bot Discord
+DISCORD_TOKEN=seu_token_do_bot_aqui
+DISCORD_CLIENT_ID=seu_client_id_aqui
+DISCORD_GUILD_ID=${guildId}
+
+# Configurações do Webhook
+WEBHOOK_PORT=3000
+WEBHOOK_SECRET=seu_secret_do_webhook_aqui
+
+# Configurações do MongoDB
+# IMPORTANTE: Se sua senha contém caracteres especiais (@, #, %, etc), codifique-os:
+# @ = %40, # = %23, % = %25, + = %2B, / = %2F, ? = %3F, = = %3D, & = %26
+# Exemplo: senha@123 -> senha%40123
+# Use: npm run encode-password para codificar automaticamente
+MONGODB_URI=mongodb+srv://usuario:senha@cluster.mongodb.net/bot-geralt?retryWrites=true&w=majority
+
+# Configurações de Moderação
+LOG_CHANNEL_ID=id_do_canal_de_logs
+MODERATOR_ROLE_ID=id_do_cargo_de_moderador
+
+# Configurações de Tickets (Opcional)
+TICKET_CATEGORY_ID=id_da_categoria_de_tickets
+STAFF_ROLE_ID=id_da_role_da_staff
+
+# Configurações de Moderação Automática (Opcional)
+# AUTO_MOD_ENABLED=true
+# ANTI_SPAM_MAX_MESSAGES=5
+# ANTI_SPAM_TIME_WINDOW=10
+# WORD_FILTER_ENABLED=true
+# LINK_FILTER_ENABLED=true
+# CAPS_FILTER_MAX_PERCENTAGE=70
+# EMOJI_FILTER_MAX_EMOJIS=5
+`;
+
+const envPath = path.join(__dirname, '..', '.env');
+
+try {
+    fs.writeFileSync(envPath, envContent);
+    console.log('✅ Arquivo .env configurado com sucesso!');
+    console.log(`🏠 Guild ID configurado: ${guildId}`);
+    console.log('⚡ Comandos serão registrados instantaneamente!');
+    console.log('\n📝 Próximos passos:');
+    console.log('1. Configure DISCORD_TOKEN e DISCORD_CLIENT_ID no .env');
+    console.log('2. Execute: npm run deploy-dev');
+    console.log('3. Teste os comandos no Discord!');
+} catch (error) {
+    console.error('❌ Erro ao criar arquivo .env:', error);
+} 
