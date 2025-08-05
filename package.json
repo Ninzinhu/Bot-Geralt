@@ -12,6 +12,7 @@
     "prepare-deploy": "node scripts/prepare-deploy.js",
     "test-webhook": "node scripts/test-webhook.js",
     "test-mongodb": "node scripts/test-mongodb.js",
+    "test-mongodb-connection": "node scripts/test-mongodb-connection.js",
     "encode-password": "node scripts/encode-password.js",
     "test-deploy": "node scripts/test-deploy.js"
   },
