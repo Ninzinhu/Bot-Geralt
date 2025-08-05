@@ -6,7 +6,7 @@ module.exports = {
         .setName('resume')
         .setDescription('Retoma a música pausada'),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

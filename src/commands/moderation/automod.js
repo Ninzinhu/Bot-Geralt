@@ -75,7 +75,7 @@ module.exports = {
                         )))
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 
@@ -91,22 +91,22 @@ module.exports = {
 
             switch (subcommand) {
                 case 'status':
-                    await this.showStatus(interaction, database);
+                    await this.showStatus(interaction);
                     break;
                 case 'ativar':
-                    await this.enableAutoMod(interaction, database);
+                    await this.enableAutoMod(interaction);
                     break;
                 case 'desativar':
-                    await this.disableAutoMod(interaction, database);
+                    await this.disableAutoMod(interaction);
                     break;
                 case 'palavras':
-                    await this.manageWords(interaction, database);
+                    await this.manageWords(interaction);
                     break;
                 case 'spam':
-                    await this.configureSpam(interaction, database);
+                    await this.configureSpam(interaction);
                     break;
                 case 'acoes':
-                    await this.configureActions(interaction, database);
+                    await this.configureActions(interaction);
                     break;
             }
 
@@ -119,7 +119,7 @@ module.exports = {
         }
     },
 
-    async showStatus(interaction, database) {
+    async showStatus(interaction) {
         const config = await this.getConfig(interaction.guild.id);
         
         const embed = new EmbedBuilder()
@@ -139,7 +139,7 @@ module.exports = {
         await interaction.editReply({ embeds: [embed] });
     },
 
-    async enableAutoMod(interaction, database) {
+    async enableAutoMod(interaction) {
         const config = await this.getConfig(interaction.guild.id);
         config.enabled = true;
         
@@ -157,7 +157,7 @@ module.exports = {
         await interaction.editReply({ embeds: [embed] });
     },
 
-    async disableAutoMod(interaction, database) {
+    async disableAutoMod(interaction) {
         const config = await this.getConfig(interaction.guild.id);
         config.enabled = false;
         
@@ -175,7 +175,7 @@ module.exports = {
         await interaction.editReply({ embeds: [embed] });
     },
 
-    async manageWords(interaction, database) {
+    async manageWords(interaction) {
         const action = interaction.options.getString('acao');
         const word = interaction.options.getString('palavra');
         const config = await this.getConfig(interaction.guild.id);
@@ -252,7 +252,7 @@ module.exports = {
         }
     },
 
-    async configureSpam(interaction, database) {
+    async configureSpam(interaction) {
         const maxMessages = interaction.options.getInteger('max_mensagens');
         const timeWindow = interaction.options.getInteger('janela_tempo');
         const config = await this.getConfig(interaction.guild.id);
@@ -278,7 +278,7 @@ module.exports = {
         await interaction.editReply({ embeds: [embed] });
     },
 
-    async configureActions(interaction, database) {
+    async configureActions(interaction) {
         const severity = interaction.options.getString('severidade');
         const action = interaction.options.getString('acao');
         const config = await this.getConfig(interaction.guild.id);

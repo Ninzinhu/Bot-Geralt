@@ -6,7 +6,7 @@ module.exports = {
         .setName('skip')
         .setDescription('Pula para a próxima música'),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

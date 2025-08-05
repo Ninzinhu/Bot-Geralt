@@ -4,8 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
-const Database = require('./database/database');
-const WebhookHandler = require('./webhooks/webhookHandler');
 const { Events } = require('discord.js');
 
 // Carregar variáveis de ambiente
@@ -24,8 +22,6 @@ class BotGeralt {
         });
 
         this.client.commands = new Collection();
-        this.database = new Database();
-        this.webhookHandler = new WebhookHandler(this.client, this.database);
         
         this.setupExpress();
         this.loadCommands();
@@ -38,9 +34,9 @@ class BotGeralt {
         this.app.use(cors());
         this.app.use(express.json());
 
-        // Rota para webhook do SaaS
+        // Rota para webhook do SaaS (desabilitada temporariamente)
         this.app.post('/webhook/saas', (req, res) => {
-            this.webhookHandler.handleSaasWebhook(req, res);
+            res.json({ status: 'webhook_disabled', message: 'Webhook temporariamente desabilitado' });
         });
 
         // Rota raiz para health check
@@ -93,9 +89,9 @@ class BotGeralt {
             const event = require(filePath);
             
             if (event.once) {
-                this.client.once(event.name, (...args) => event.execute(...args, this.database));
+                this.client.once(event.name, (...args) => event.execute(...args));
             } else {
-                this.client.on(event.name, (...args) => event.execute(...args, this.database));
+                this.client.on(event.name, (...args) => event.execute(...args));
             }
             console.log(`🎯 Evento carregado: ${event.name}`);
         }
@@ -109,7 +105,7 @@ class BotGeralt {
             if (!command) return;
 
             try {
-                await command.execute(interaction, this.database);
+                await command.execute(interaction);
             } catch (error) {
                 console.error(`❌ Erro ao executar comando ${interaction.commandName}:`, error);
                 
@@ -126,9 +122,6 @@ class BotGeralt {
 
     async start() {
         try {
-            await this.database.init();
-            console.log('🗄️ Banco de dados inicializado');
-            
             await this.client.login(process.env.DISCORD_TOKEN);
             console.log('🤖 Bot Geralt está online!');
         } catch (error) {

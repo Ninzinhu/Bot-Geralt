@@ -6,7 +6,7 @@ module.exports = {
         .setName('stop')
         .setDescription('Para a música e limpa a fila'),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

@@ -35,7 +35,7 @@ module.exports = {
                         .setRequired(false)))
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

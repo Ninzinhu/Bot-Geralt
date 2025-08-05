@@ -17,7 +17,7 @@ module.exports = {
                 .setRequired(false))
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply({ ephemeral: true });
 

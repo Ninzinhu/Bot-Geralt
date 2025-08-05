@@ -6,7 +6,7 @@ module.exports = {
         .setName('queue')
         .setDescription('Mostra a fila de músicas'),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

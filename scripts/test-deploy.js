@@ -9,8 +9,7 @@ console.log('🔍 Testando configuração para deploy...\n');
 
 // Verificar variáveis de ambiente essenciais
 const requiredEnvVars = [
-    'DISCORD_TOKEN',
-    'MONGODB_URI'
+    'DISCORD_TOKEN'
 ];
 
 const optionalEnvVars = [
@@ -18,7 +17,8 @@ const optionalEnvVars = [
     'LOG_CHANNEL_ID',
     'MODERATOR_ROLE_ID',
     'STAFF_ROLE_ID',
-    'WEBHOOK_PORT'
+    'WEBHOOK_PORT',
+    'MONGODB_URI'
 ];
 
 console.log('📋 Verificando variáveis de ambiente...');
@@ -112,7 +112,7 @@ if (fs.existsSync('package.json')) {
     console.log(`✅ Dependências: ${dependencies.length} pacote(s)`);
     
     // Verificar dependências críticas
-    const criticalDeps = ['discord.js', 'mongoose', 'express'];
+    const criticalDeps = ['discord.js', 'express'];
     for (const dep of criticalDeps) {
         if (packageJson.dependencies[dep]) {
             console.log(`  ✅ ${dep}: ${packageJson.dependencies[dep]}`);

@@ -44,19 +44,19 @@ module.exports = {
                         .setRequired(true)))
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             const subcommand = interaction.options.getSubcommand();
 
             switch (subcommand) {
                 case 'criar':
-                    await this.createTicket(interaction, database);
+                    await this.createTicket(interaction);
                     break;
                 case 'listar':
-                    await this.listTickets(interaction, database);
+                    await this.listTickets(interaction);
                     break;
                 case 'fechar':
-                    await this.closeTicket(interaction, database);
+                    await this.closeTicket(interaction);
                     break;
             }
         } catch (error) {

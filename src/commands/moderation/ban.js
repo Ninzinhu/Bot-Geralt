@@ -21,7 +21,7 @@ module.exports = {
                 .setMaxValue(7))
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

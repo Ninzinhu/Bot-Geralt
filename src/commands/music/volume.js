@@ -12,7 +12,7 @@ module.exports = {
                 .setMinValue(0)
                 .setMaxValue(100)),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

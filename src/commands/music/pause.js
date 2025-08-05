@@ -6,7 +6,7 @@ module.exports = {
         .setName('pause')
         .setDescription('Pausa a música atual'),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

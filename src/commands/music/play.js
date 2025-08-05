@@ -10,7 +10,7 @@ module.exports = {
                 .setDescription('Nome da música ou URL do YouTube')
                 .setRequired(true)),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 

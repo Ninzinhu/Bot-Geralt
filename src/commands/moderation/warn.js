@@ -43,7 +43,7 @@ module.exports = {
                         .setRequired(true)))
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
 
-    async execute(interaction, database) {
+    async execute(interaction) {
         try {
             await interaction.deferReply();
 
@@ -59,16 +59,16 @@ module.exports = {
 
             switch (subcommand) {
                 case 'adicionar':
-                    await this.addWarn(interaction, database);
+                    await this.addWarn(interaction);
                     break;
                 case 'listar':
-                    await this.listWarns(interaction, database);
+                    await this.listWarns(interaction);
                     break;
                 case 'remover':
-                    await this.removeWarn(interaction, database);
+                    await this.removeWarn(interaction);
                     break;
                 case 'limpar':
-                    await this.clearWarns(interaction, database);
+                    await this.clearWarns(interaction);
                     break;
             }
 
@@ -81,7 +81,7 @@ module.exports = {
         }
     },
 
-    async addWarn(interaction, database) {
+    async addWarn(interaction) {
         const targetUser = interaction.options.getUser('usuario');
         const targetMember = interaction.options.getMember('usuario');
         const reason = interaction.options.getString('motivo');
@@ -175,7 +175,7 @@ module.exports = {
         }
     },
 
-    async listWarns(interaction, database) {
+    async listWarns(interaction) {
         const targetUser = interaction.options.getUser('usuario');
 
         // Simular lista de avisos (em implementação real, viria do banco)
@@ -219,7 +219,7 @@ module.exports = {
         await interaction.editReply({ embeds: [embed] });
     },
 
-    async removeWarn(interaction, database) {
+    async removeWarn(interaction) {
         const warnId = interaction.options.getString('id');
 
         // Simular remoção de aviso
@@ -255,7 +255,7 @@ module.exports = {
         }
     },
 
-    async clearWarns(interaction, database) {
+    async clearWarns(interaction) {
         const targetUser = interaction.options.getUser('usuario');
         const targetMember = interaction.options.getMember('usuario');
 
