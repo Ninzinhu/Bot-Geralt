@@ -43,6 +43,16 @@ class BotGeralt {
             this.webhookHandler.handleSaasWebhook(req, res);
         });
 
+        // Rota raiz para health check
+        this.app.get('/', (req, res) => {
+            res.json({ 
+                status: 'online', 
+                bot: this.client.user?.tag || 'Iniciando...',
+                uptime: process.uptime(),
+                timestamp: new Date().toISOString()
+            });
+        });
+
         // Rota de health check
         this.app.get('/health', (req, res) => {
             res.json({ status: 'online', bot: this.client.user?.tag || 'Iniciando...' });

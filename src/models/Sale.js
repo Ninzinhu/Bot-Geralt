@@ -36,7 +36,8 @@ const saleSchema = new mongoose.Schema({
     },
     transaction_id: {
         type: String,
-        sparse: true
+        sparse: true,
+        index: true
     }
 }, {
     timestamps: true
@@ -45,7 +46,6 @@ const saleSchema = new mongoose.Schema({
 // Índices para melhor performance
 saleSchema.index({ customer_id: 1 });
 saleSchema.index({ status: 1 });
-saleSchema.index({ transaction_id: 1 });
 saleSchema.index({ createdAt: -1 });
 
 module.exports = mongoose.model('Sale', saleSchema); 

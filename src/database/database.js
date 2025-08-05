@@ -17,10 +17,7 @@ class Database {
                 throw new Error('MONGODB_URI não configurada no arquivo .env');
             }
 
-            await mongoose.connect(mongoUri, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            });
+            await mongoose.connect(mongoUri);
 
             this.isConnected = true;
             console.log('🗄️ Conectado ao MongoDB com sucesso!');

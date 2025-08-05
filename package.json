@@ -4,7 +4,7 @@
   "description": "Bot do Discord para gerenciamento de vendas, tickets e informações da loja",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js & node src/healthcheck.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "deploy": "node src/deploy-commands.js",
     "deploy-dev": "node scripts/deploy-dev.js",
@@ -12,7 +12,8 @@
     "prepare-deploy": "node scripts/prepare-deploy.js",
     "test-webhook": "node scripts/test-webhook.js",
     "test-mongodb": "node scripts/test-mongodb.js",
-    "encode-password": "node scripts/encode-password.js"
+    "encode-password": "node scripts/encode-password.js",
+    "test-deploy": "node scripts/test-deploy.js"
   },
   "keywords": [
     "discord",
