@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { canExecuteModeration, getPermissionError } = require('../../utils/permissions');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -45,6 +46,14 @@ module.exports = {
     async execute(interaction, database) {
         try {
             await interaction.deferReply();
+
+            // Verificar permissão de moderação
+            if (!canExecuteModeration(interaction.member)) {
+                return await interaction.editReply({
+                    content: getPermissionError('warn', 'Administrador ou Moderador'),
+                    ephemeral: true
+                });
+            }
 
             const subcommand = interaction.options.getSubcommand();
 

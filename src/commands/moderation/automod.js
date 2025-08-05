@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { canExecuteAutomod, getPermissionError } = require('../../utils/permissions');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -77,6 +78,14 @@ module.exports = {
     async execute(interaction, database) {
         try {
             await interaction.deferReply();
+
+            // Verificar permissão de administrador
+            if (!canExecuteAutomod(interaction.member)) {
+                return await interaction.editReply({
+                    content: getPermissionError('automod', 'Administrador'),
+                    ephemeral: true
+                });
+            }
 
             const subcommand = interaction.options.getSubcommand();
 
