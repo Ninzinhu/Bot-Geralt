@@ -1,7 +1,7 @@
 services:
   - type: web
     name: bot-geralt
-    env: node
+    runtime: node
     plan: free
     buildCommand: npm install
     startCommand: npm start
@@ -20,4 +20,4 @@ services:
       - key: STAFF_ROLE_ID
         sync: false
       - key: WEBHOOK_PORT
-        value: 10000 
+        value: 10000
